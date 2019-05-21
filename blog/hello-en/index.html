@@ -2,36 +2,36 @@
 <html lang="tw">
   <head>
   <meta charset="utf-8">
-<title>AWS CodeBuild - 建立Windows主機的DockerImage - GrandtechCloud Service Blog</title>
-<meta name="description" content="如何建立自己Windows主機的DockerImage">
+<title>Hello .en - GrandtechCloud Service Blog</title>
+<meta name="description" content="test">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.55.2" />
   
-<meta itemprop="name" content="AWS CodeBuild - 建立Windows主機的DockerImage">
-<meta itemprop="description" content="如何建立自己Windows主機的DockerImage">
+<meta itemprop="name" content="Hello .en">
+<meta itemprop="description" content="test">
 
 
-<meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="252">
+<meta itemprop="datePublished" content="2019-05-20T16:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-05-20T16:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1">
 
 
 
-<meta itemprop="keywords" content="CodeBuild,AWS,CICD," />
+<meta itemprop="keywords" content="" />
 
-  <meta property="og:title" content="AWS CodeBuild - 建立Windows主機的DockerImage" />
-<meta property="og:description" content="如何建立自己Windows主機的DockerImage" />
+  <meta property="og:title" content="Hello .en" />
+<meta property="og:description" content="test" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://grandtechcloud.github.io/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/" />
-<meta property="article:published_time" content="2019-04-03T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-04-03T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://grandtechcloud.github.io/blog/hello-en/" />
+<meta property="article:published_time" content="2019-05-20T16:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-05-20T16:00:00&#43;00:00"/>
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="AWS CodeBuild - 建立Windows主機的DockerImage"/>
-<meta name="twitter:description" content="如何建立自己Windows主機的DockerImage"/>
+<meta name="twitter:title" content="Hello .en"/>
+<meta name="twitter:description" content="test"/>
 
   
 
@@ -90,7 +90,12 @@
   <menu id="lang-menu" class="flyout-menu">
   <a href="#" lang="tw" class="active"><span class="flag-icon flag-icon-tw" alt="tw"></span></a>
   
-        <a href="https://grandtechcloud.github.io/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/" lang="en"><span class="flag-icon flag-icon-en" alt="en"></span></a>
+    
+      
+    
+      
+        <a href="/en" lang="en" class="no-lang"><span class="flag-icon flag-icon-en" alt="en"></span></a>
+      
     
   
 </menu>
@@ -176,19 +181,19 @@
   <header>
   <div class="title">
     
-        <h2><a href="/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/">AWS CodeBuild - 建立Windows主機的DockerImage</a></h2>
+        <h2><a href="/blog/hello-en/">Hello .en</a></h2>
     
     
-        <p>如何建立自己Windows主機的DockerImage</p>
+        <p>test</p>
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2019-04-03 00:00:00 &#43;0000 UTC">
-      April 3, 2019
+    <time class="published" datetime="2019-05-20 16:00:00 &#43;0000 UTC">
+      May 20, 2019
     </time>
-    <span class="author">GCS SRE Team</span>
+    <span class="author">GCSSRE</span>
     
-        <p>2 minute read</p>
+        <p>1 minute read</p>
     
   </div>
 </header>
@@ -209,89 +214,7 @@
   
 
   <div class="content">
-    <p>如果想用AWS CodeBuild Windows Server 建置 .Net, 或者一些C# Framework, 有時候會遇到使用原生的無法正常編譯的問題, 這邊就要自己建立合適環境的Docker Image.</p>
-
-<p>Instructions
-環境建置：
-使用一台主機或者虛擬機或者直接
-Launch一台EC2 (Windows Sever 2016 with Containers)
-至少給60GB空間
-建議是t2. Medium以上的機器, build image效率會較好
-以下是直接透過EC2進行的步驟
-啟動完成後透過遠端桌面連入</p>
-
-<ul>
-<li>運行命令管理員(cmd.exe)</li>
-<li>建立build Image的工作目錄：
-<code>
-mkdir C:\BuildTools
-cd C:\BuildTools
-</code></li>
-<li>建立C:\BuildTools\Dockerfile:<br /></li>
-</ul>
-
-<pre><code># escape=`
-
-FROM microsoft/dotnet-framework:4.7.2-runtime
-
-SHELL [&quot;powershell&quot;, &quot;-Command&quot;, &quot;$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';&quot;]
-
-#Install NuGet CLI
-ENV NUGET_VERSION 4.4.1
-RUN New-Item -Type Directory $Env:ProgramFiles\NuGet; `
-    Invoke-WebRequest -UseBasicParsing https://dist.nuget.org/win-x86-commandline/v$Env:NUGET_VERSION/nuget.exe -OutFile $Env:ProgramFiles\NuGet\nuget.exe
-
-# Install VS Test Agent
-RUN Invoke-WebRequest -UseBasicParsing https://download.visualstudio.microsoft.com/download/pr/12210068/8a386d27295953ee79281fd1f1832e2d/vs_TestAgent.exe -OutFile vs_TestAgent.exe; `
-    Start-Process vs_TestAgent.exe -ArgumentList '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait; `
-    Remove-Item -Force vs_TestAgent.exe; `
-# Install VS Build Tools
-    Invoke-WebRequest -UseBasicParsing https://download.visualstudio.microsoft.com/download/pr/12210059/e64d79b40219aea618ce2fe10ebd5f0d/vs_BuildTools.exe -OutFile vs_BuildTools.exe; `
-    # Installer won't detect DOTNET_SKIP_FIRST_TIME_EXPERIENCE if ENV is used, must use setx /M
-    setx /M DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1; `
-    Start-Process vs_BuildTools.exe -ArgumentList '--add', 'Microsoft.VisualStudio.Workload.MSBuildTools', '--add', 'Microsoft.VisualStudio.Workload.NetCoreBuildTools', '--add', 'Microsoft.VisualStudio.Workload.WebBuildTools;includeRecommended', '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait; `
-    Remove-Item -Force vs_buildtools.exe; `
-    Remove-Item -Force -Recurse \&quot;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\&quot;; `
-    Remove-Item -Force -Recurse ${Env:TEMP}\*; `
-    Remove-Item -Force -Recurse \&quot;${Env:ProgramData}\Package Cache\&quot;
-
-# Set PATH in one layer to keep image size down.
-RUN setx /M PATH $(${Env:PATH} `
-    + \&quot;;${Env:ProgramFiles}\NuGet\&quot; `
-    + \&quot;;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\TestAgent\Common7\IDE\CommonExtensions\Microsoft\TestWindow\&quot; `
-    + \&quot;;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\&quot;)
-
-# Install Targeting Packs
-RUN @('4.0', '4.5.2', '4.6.2', '4.7.2') `
-    | %{ `
-        Invoke-WebRequest -UseBasicParsing https://dotnetbinaries.blob.core.windows.net/referenceassemblies/v${_}.zip -OutFile referenceassemblies.zip; `
-        Expand-Archive -Force referenceassemblies.zip -DestinationPath \&quot;${Env:ProgramFiles(x86)}\Reference Assemblies\Microsoft\Framework\.NETFramework\&quot;; `
-        Remove-Item -Force referenceassemblies.zip; `
-    }
-</code></pre>
-
-<ul>
-<li>執行build Image的指令
-<code>
-docker build -t buildtool:latest -m 3GB .
-</code></li>
-<li>等待運行完成後
-可以用下面的指令進入容器內測試
-<code>
-docker run -it buildtool
-</code></li>
-<li>測試ＯＫ後可以準備上傳到AWS ECR
-<code>
-aws ecr get-login --region region --no-include-email
-</code>
-*將輸出的登入資訊再貼一次登入docker
-登入docker後即可將剛剛的buildtool上傳到aws ecr
-<code>
-docker tag buildtool:latest #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/ buildtool:latest
-docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
-</code></li>
-<li>上傳完成後即可在AWS ECR找到剛剛上傳的Image, 在CodeBuild的選項也就出現可以選擇</li>
-</ul>
+    <p>Hello</p>
 
   </div>
   <footer>
@@ -299,33 +222,9 @@ docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
   
     
     
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://grandtechcloud.github.io/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8">實務應用</a></li>
-          
-        </ul>
-      </li>
-    
   
   
     
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://grandtechcloud.github.io/tags/codebuild">CodeBuild</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://grandtechcloud.github.io/tags/aws">AWS</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://grandtechcloud.github.io/tags/cicd">CICD</a></li>
-          
-        </ul>
-      </li>
     
   
 </ul>
@@ -338,10 +237,8 @@ docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
 </article>
 <div class="pagination">
   
-    <a href="/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/" class="button big previous"><i class="fas fa-angle-left"></i> CICD相關服務介紹</a>
+    <a href="/blog/test-tw/" class="button big previous"><i class="fas fa-angle-left"></i> Test-TW</a>
   
-  
-    <a href="/blog/test-tw/" class="button big next">Test-TW <i class="fas fa-angle-right"></i></a>
   
 </div>
 
