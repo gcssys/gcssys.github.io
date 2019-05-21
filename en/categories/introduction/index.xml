@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>introduction on GrandtechCloud Service Blog</title>
+    <link>https://gcssys.github.io/en/categories/introduction/</link>
+    <description>Recent content in introduction on GrandtechCloud Service Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://gcssys.github.io/en/categories/introduction/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CICD related service introduction</title>
+      <link>https://gcssys.github.io/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gcssys.github.io/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/</guid>
+      <description>CI/CD can greatly increase the efficiency and stability of software development. There are many solutions that can be used. Here are some common and application areas. Code version control:  AWS Code Commit AWS native control system, can be painlessly connected with Git
+ Github The largest code is stored on the website. Currently, the free version of the project can also open an unlimited number of private repositories. Only some features require payment.</description>
+    </item>
+    
+  </channel>
+</rss>
