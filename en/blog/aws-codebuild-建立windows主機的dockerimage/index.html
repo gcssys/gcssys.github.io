@@ -16,7 +16,7 @@
 
 <meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="244">
+<meta itemprop="wordCount" content="381">
 
 
 
@@ -209,20 +209,20 @@
   
 
   <div class="content">
-    <p>如果想用AWS CodeBuild Windows Server 建置 .Net, 或者一些C# Framework, 有時候會遇到使用原生的無法正常編譯的問題, 這邊就要自己建立合適環境的Docker Image.</p>
+    <p>If you want to build .Net with AWS CodeBuild Windows Server, or some C# Framework, sometimes you will encounter problems with native compilation that cannot be compiled properly. You should create your own Docker Image.</p>
 
-<p>Instructions 環境建置： 使用一台主機或者虛擬機或者直接 Launch一台EC2 (Windows Sever 2016 with Containers) 至少給60GB空間 建議是t2. Medium以上的機器, build image效率會較好 以下是直接透過EC2進行的步驟 啟動完成後透過遠端桌面連入</p>
+<p>Instructions Environment: Use a host or virtual machine or a direct EC2 (Windows Sever 2016 with Containers). At least 60GB of space is recommended for t2. Medium or higher. The build image will be better. The following is directly through EC2. After the step is completed, connect to the remote desktop.</p>
 
 <ul>
-<li>運行命令管理員(cmd.exe)<br /></li>
+<li>Run command administrator (cmd.exe)<br /></li>
 
-<li><p>建立build Image的工作目錄：</p>
+<li><p>Create a working directory of build image:</p>
 
-<pre><code>mkdir C:\\BuildTools
-cd C:\\BuildTools
+<pre><code>Mkdir C:\\BuildTools   
+Cd C:\\BuildTools   
 </code></pre></li>
 
-<li><p>建立C:\BuildTools\Dockerfile:</p></li>
+<li><p>Create C:\BuildTools\Dockerfile:</p></li>
 </ul>
 
 <pre><code>  # escape=\`
@@ -267,30 +267,30 @@ cd C:\\BuildTools
 </code></pre>
 
 <ul>
-<li><p>執行build Image的指令</p>
+<li><p>Execute the command to build Image</p>
 
-<pre><code>docker build -t buildtool:latest -m 3GB .
+<pre><code>Docker build -t buildtool:latest -m 3GB .   
 </code></pre></li>
 
-<li><p>等待運行完成後<br />
-可以用下面的指令進入容器內測試</p>
+<li><p>After waiting for the run to complete<br />
+You can use the following instructions to enter the container test</p>
 
-<pre><code>docker run -it buildtool
+<pre><code>Docker run -it buildtool
 </code></pre></li>
 
-<li><p>測試ＯＫ後可以準備上傳到AWS ECR</p>
+<li><p>After testing OK, you can prepare to upload to AWS ECR</p>
 
-<pre><code>aws ecr get-login --region region --no-include-email
+<pre><code>Aws ecr get-login --region region --no-include-email
 </code></pre></li>
 
-<li><p>將輸出的登入資訊再貼一次登入docker<br />
-登入docker後即可將剛剛的buildtool上傳到aws ecr</p>
+<li><p>Paste the login information once and log in to docker<br />
+After logging in to docker, you can upload the just buildtool to aws ecr</p>
 
-<pre><code>docker tag buildtool:latest #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/ buildtool:latest
-docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
+<pre><code>Docker tag buildtool:latest #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/ buildtool:latest
+Docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
 </code></pre></li>
 
-<li><p>上傳完成後即可在AWS ECR找到剛剛上傳的Image, 在CodeBuild的選項也就出現可以選擇</p></li>
+<li><p>Once the upload is complete, you can find the Image you just uploaded in AWS ECR. The option in CodeBuild will appear.</p></li>
 </ul>
 
   </div>
