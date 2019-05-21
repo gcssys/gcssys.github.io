@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About GCS on GrandtechCloud Service Blog</title>
-    <link>https://grandtechcloud.github.io/about/</link>
+    <link>https://gcssys.github.io/about/</link>
     <description>Recent content in About GCS on GrandtechCloud Service Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>tw</language>
     <lastBuildDate>Wed, 09 Apr 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://grandtechcloud.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gcssys.github.io/about/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

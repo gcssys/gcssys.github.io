@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Contact on GrandtechCloud Service Blog</title>
-    <link>https://grandtechcloud.github.io/contact/</link>
+    <link>https://gcssys.github.io/contact/</link>
     <description>Recent content in Contact on GrandtechCloud Service Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>tw</language>
     
-	<atom:link href="https://grandtechcloud.github.io/contact/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gcssys.github.io/contact/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
