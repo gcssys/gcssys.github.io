@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+<title>DotNet CI/CD 專案無法編譯處理 - GrandtechCloud Service Blog</title>
+<meta name="description" content="DotNet CI/CD 專案無法編譯處理">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <meta name="generator" content="Hugo 0.55.2" />
+  
+<meta itemprop="name" content="DotNet CI/CD 專案無法編譯處理">
+<meta itemprop="description" content="DotNet CI/CD 專案無法編譯處理">
+
+
+<meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="49">
+
+
+
+<meta itemprop="keywords" content="CodeBuild,AWS,CICD," />
+
+  <meta property="og:title" content="DotNet CI/CD 專案無法編譯處理" />
+<meta property="og:description" content="DotNet CI/CD 專案無法編譯處理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://grandtechcloud.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/" />
+<meta property="article:published_time" content="2019-04-03T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-03T00:00:00&#43;00:00"/>
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DotNet CI/CD 專案無法編譯處理"/>
+<meta name="twitter:description" content="DotNet CI/CD 專案無法編譯處理"/>
+
+  
+
+  <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+  
+    
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+      <link rel="stylesheet" href="/css/main.min.css">
+      <link rel="stylesheet" href="/css/add-on.css">
+    
+  
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/en/">
+        
+          
+            Blog
+          
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        <a href="/en/" class="link"><i class="fas fa-home">&nbsp;</i>Home</a>
+      
+        <a href="/en/about/" class="link"><i class="far fa-id-card">&nbsp;</i>About</a>
+      
+        <a href="/en/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
+      
+        <a href="/en/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
+      
+        <a href="/en/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
+      
+      <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    <a href="#lang-menu" class="lang-toggle" lang="en"><span class="flag-icon flag-icon-en" alt="en"></span></a>
+    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  <menu id="lang-menu" class="flyout-menu">
+  <a href="#" lang="en" class="active"><span class="flag-icon flag-icon-en" alt="en"></span></a>
+  
+        <a href="https://grandtechcloud.github.io/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/" lang="tw"><span class="flag-icon flag-icon-tw" alt="tw"></span></a>
+    
+  
+</menu>
+
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+  
+        <a href="mailto:?subject=Check out this post by &amp;body=" target="_blank" class="share-btn email">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+    </menu>
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="/en/"><img src="https://github.com/grandtechcloud/Pics/blob/master/images/avatar.png?raw=true" class="circle" width="" alt="GCS SRE TEAM" /></a>
+  <header>
+    <h1>GCS Service Blog</h1>
+  </header>
+  <main>
+    <p>If you can DREAM it, You can DO it!</p>
+  </main>
+  
+    <footer>
+      <ul class="social-icons">
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="mailto:gcssre@grandtechcloud.com" target="_blank" title="Email" class="far fa-envelope"></a></li>
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD 專案無法編譯處理</a></h2>
+    
+    
+        <p>DotNet CI/CD 專案無法編譯處理</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-04-03 00:00:00 &#43;0000 UTC">
+      April 3, 2019
+    </time>
+    <span class="author">GCS SRE Team</span>
+    
+        <p>1 minute read</p>
+    
+  </div>
+</header>
+
+  <section id="social-share">
+    
+
+
+
+  
+        <a href="mailto:?subject=Check out this post by &amp;body=" target="_blank" class="share-btn email">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+  </section>
+  
+
+  <div class="content">
+    <p>有客戶專案想導入CI/CD, 專案的網頁SourceCode是用DotNet Web製作,
+因為客戶也還沒使用版控, 這邊就介紹他使用了Github, 順便教學了一下Git的使用。</p>
+
+<p>這邊第一個想選用的是TravisCI, 因為直接與Github對接, 也方便客戶使用
+不過測試從客戶那邊取得的測試程式碼, 一測試就遭遇悲劇&hellip;
+<img src="https://github.com/grandtechcloud/Pics/blob/master/images/travis_fail.png?raw=true" alt="" /></p>
+
+<p>因為Travis是用Linux Container來Build專案, 但對C#的支援有限, 尤其是使用到Windows的許多Framework, 測到這邊只能放棄TravisCI。</p>
+
+<p>再來有找到一款有提供Windows主機做CI的Saas服務, Appveyor, 對C#支援性提高許多, 我一放入測試專案測試就編譯成功了！
+<img src="https://github.com/grandtechcloud/Pics/blob/master/images/success.png?raw=true" alt="" /></p>
+
+<p>後續跟客戶拿了第二包程式碼進行測試, 因為真的有放入一些商業用途的程式碼, 編譯了又出現缺少東西的問題&hellip;只好再換下一個&hellip;</p>
+
+<p>最後使用了AWS的CodeBuild, 有提供Windows的主機, 不過也遇到無法正常編譯的問題, 但AWS有提供自製docker image的選項, 所以這邊就研究了一下怎麼建立配合客戶專案的Image, 詳細可以看這邊({% post_link AWS-CodeBuild-建立Windows主機的DockerImage 建立客製化Image %}), 透過直接幫客戶建置了必須的環境, 這塊才算安然度過&hellip;
+<img src="https://github.com/grandtechcloud/Pics/blob/master/images/images.png?raw=true" alt="" /></p>
+
+<p>不過解決了第二包程式碼之後, 正式專案接入後, 又遭遇到問題囉, 因為客戶先前其實只有一個人在開發, 所以其實專案相依性上沒有控制得很好, 一放上雲端後有各種的missing refence問題, 這邊好像沒啥好方式, 只能跟客戶一起手把手訂下一些規範, 然後幫忙處理一下專案的問題&hellip;</p>
+
+<p><img src="https://github.com/grandtechcloud/Pics/blob/master/images/fixcode.png?raw=true" alt="" /></p>
+
+<p>經過了這些努力, 把客戶的CI/CD最難過的一關解決了, 也能開始後續的自動部署部分。</p>
+
+  </div>
+  <footer>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8">實務應用</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/en/tags/codebuild">CodeBuild</a></li>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/en/tags/aws">AWS</a></li>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/en/tags/cicd">CICD</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+<article class="post">
+  
+
+</article>
+<div class="pagination">
+  
+    <a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/" class="button big previous"><i class="fas fa-angle-left"></i> K6.io-壓測工具介紹</a>
+  
+  
+    <a href="/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/" class="button big next">CICD相關服務介紹 <i class="fas fa-angle-right"></i></a>
+  
+</div>
+
+
+      </main>
+      <section id="site-sidebar">
+  <section id="recent-posts">
+    <header>
+      <h1>Recent posts</h1>
+    </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/">AWS CodeBuild - 建立Windows主機的DockerImage</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/">CICD相關服務介紹</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD 專案無法編譯處理</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/">K6.io-壓測工具介紹</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    
+  </section>
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/en/categories">Categories</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8/">實務應用<span class="count">3</span></a>
+            
+          
+          <li>
+            
+              <a href="/en/categories/%E4%BB%8B%E7%B4%B9/">介紹<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  <section id="mini-bio">
+    <header>
+      <h1>About</h1>
+    </header>
+    <p>GCS SRE TEAM</p>
+    <footer>
+      <a href="/en/about" class="button">Learn More</a>
+    </footer>
+  </section>
+</section>
+
+      <footer id="site-footer">
+  
+      <ul class="social-icons">
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="mailto:gcssre@grandtechcloud.com" target="_blank" title="Email" class="far fa-envelope"></a></li>
+
+      </ul>
+  
+  <p class="copyright">
+    
+      &copy; 2019
+      
+        GrandtechCloud Service Blog
+      
+    .
+    Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/toml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src=/js/util.js></script>
+  <script src=/js/main.js></script>
+  <script src=/js/add-on.js></script>
+  
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+<title>CICD相關服務介紹 - GrandtechCloud Service Blog</title>
+<meta name="description" content="CICD相關服務介紹">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <meta name="generator" content="Hugo 0.55.2" />
+  
+<meta itemprop="name" content="CICD相關服務介紹">
+<meta itemprop="description" content="CICD相關服務介紹">
+
+
+<meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="83">
+
+
+
+<meta itemprop="keywords" content="CICD," />
+
+  <meta property="og:title" content="CICD相關服務介紹" />
+<meta property="og:description" content="CICD相關服務介紹" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://grandtechcloud.github.io/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/" />
+<meta property="article:published_time" content="2019-04-03T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-03T00:00:00&#43;00:00"/>
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CICD相關服務介紹"/>
+<meta name="twitter:description" content="CICD相關服務介紹"/>
+
+  
+
+  <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+  
+    
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+      <link rel="stylesheet" href="/css/main.min.css">
+      <link rel="stylesheet" href="/css/add-on.css">
+    
+  
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/en/">
+        
+          
+            Blog
+          
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        <a href="/en/" class="link"><i class="fas fa-home">&nbsp;</i>Home</a>
+      
+        <a href="/en/about/" class="link"><i class="far fa-id-card">&nbsp;</i>About</a>
+      
+        <a href="/en/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
+      
+        <a href="/en/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
+      
+        <a href="/en/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
+      
+      <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    <a href="#lang-menu" class="lang-toggle" lang="en"><span class="flag-icon flag-icon-en" alt="en"></span></a>
+    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  <menu id="lang-menu" class="flyout-menu">
+  <a href="#" lang="en" class="active"><span class="flag-icon flag-icon-en" alt="en"></span></a>
+  
+        <a href="https://grandtechcloud.github.io/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/" lang="tw"><span class="flag-icon flag-icon-tw" alt="tw"></span></a>
+    
+  
+</menu>
+
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+  
+        <a href="mailto:?subject=Check out this post by &amp;body=" target="_blank" class="share-btn email">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+    </menu>
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="/en/"><img src="https://github.com/grandtechcloud/Pics/blob/master/images/avatar.png?raw=true" class="circle" width="" alt="GCS SRE TEAM" /></a>
+  <header>
+    <h1>GCS Service Blog</h1>
+  </header>
+  <main>
+    <p>If you can DREAM it, You can DO it!</p>
+  </main>
+  
+    <footer>
+      <ul class="social-icons">
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="mailto:gcssre@grandtechcloud.com" target="_blank" title="Email" class="far fa-envelope"></a></li>
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/">CICD相關服務介紹</a></h2>
+    
+    
+        <p>CICD相關服務介紹</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-04-03 00:00:00 &#43;0000 UTC">
+      April 3, 2019
+    </time>
+    <span class="author">GCS SRE Team</span>
+    
+        <p>1 minute read</p>
+    
+  </div>
+</header>
+
+  <section id="social-share">
+    
+
+
+
+  
+        <a href="mailto:?subject=Check out this post by &amp;body=" target="_blank" class="share-btn email">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+  </section>
+  
+
+  <div class="content">
+    
+
+<h4 id="ci-cd能夠大幅增加軟體開發的效率以及穩定度-可以使用的解決方案也很多-這邊列出一些常見的以及用途範圍">CI/CD能夠大幅增加軟體開發的效率以及穩定度, 可以使用的解決方案也很多, 這邊列出一些常見的以及用途範圍。</h4>
+
+<h5 id="程式碼版控">程式碼版控:</h5>
+
+<ul>
+<li><p>AWS Code Commit
+AWS原生的版控系統, 可以與Git無痛接軌</p></li>
+
+<li><p>Github
+最大的程式碼存放網站, 目前免費版的專案也可以開無限個private儲存庫, 唯有一些功能需要付費。</p></li>
+
+<li><p>Bitbucket
+另外一個使用Git的雲端儲存庫, 也可以開無限的private儲存庫。</p></li>
+
+<li><p>Gitlab, Gitea
+可以讓用戶自己架設在地端</p></li>
+</ul>
+
+<h5 id="ci">CI:</h5>
+
+<ul>
+<li><p>AWS CodeBuild
+適用於CodeCommit, S3, Github, Bitbucket, 可使用linux/windows配合不同docker image編譯</p></li>
+
+<li><p>Jenkins CI
+老牌的開源工具, 讓用戶安裝在地端進行CICD, 本身具跨平台優勢, 也可以用多主機架構來分配工作進行持續交付, 適合公司想搭建內部CICD伺服器使用。</p></li>
+
+<li><p>Travis CI
+僅適用於Github, 但使用者數量多, 使用上也較穩定, 不過C# .net方面由於是在linux上編譯, 可能會有問題
+免費版可以對public的儲存庫無限使用, private則每個帳號有100次試用。</p></li>
+
+<li><p>Appveyor
+有多個Source來源可以選擇
+對windows的編譯支援度較高, 價格上也比Travis CI略便宜</p></li>
+
+<li><p>Circle CI
+可使用於Github, Bitbucket
+免費版有提供private儲存庫的支援, 採每月次數限制的</p></li>
+
+<li><p>Drone.io
+支援GitHub, GitHubEnterprise, Bitbucket, GitLab, 可以架設在地端</p></li>
+</ul>
+
+<h5 id="cd">CD:</h5>
+
+<ul>
+<li>AWS CodeDeploy
+透過S3抓取部署包, 可以設定部署方式(直接替換, 藍綠部署), 以及部署過程中流量分配方式。
+各CI平台可以透過Plugin放置部署包, 呼叫CodeDeploy進行部署</li>
+</ul>
+
+<h5 id="整合服務">整合服務:</h5>
+
+<ul>
+<li>AWS CodePipeline
+可以透過原始碼來源(CodeCommit, S3, Github, Bitbucket)變更時候, 觸發AWS CodeBuild, CodeDeploy 完成整個伺服器的部署更新。</li>
+</ul>
+
+<h5 id="可以透過類似下面的方式來組合">可以透過類似下面的方式來組合:</h5>
+
+<p><img src="https://github.com/grandtechcloud/Pics/blob/master/images/CICDPic.png?raw=true" alt="" /></p>
+
+  </div>
+  <footer>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/en/categories/%E4%BB%8B%E7%B4%B9">介紹</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/en/tags/cicd">CICD</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+<article class="post">
+  
+
+</article>
+<div class="pagination">
+  
+    <a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/" class="button big previous"><i class="fas fa-angle-left"></i> DotNet CI/CD 專案無法編譯處理</a>
+  
+  
+    <a href="/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/" class="button big next">AWS CodeBuild - 建立Windows主機的DockerImage <i class="fas fa-angle-right"></i></a>
+  
+</div>
+
+
+      </main>
+      <section id="site-sidebar">
+  <section id="recent-posts">
+    <header>
+      <h1>Recent posts</h1>
+    </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/">AWS CodeBuild - 建立Windows主機的DockerImage</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/">CICD相關服務介紹</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD 專案無法編譯處理</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/">K6.io-壓測工具介紹</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    
+  </section>
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/en/categories">Categories</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8/">實務應用<span class="count">3</span></a>
+            
+          
+          <li>
+            
+              <a href="/en/categories/%E4%BB%8B%E7%B4%B9/">介紹<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  <section id="mini-bio">
+    <header>
+      <h1>About</h1>
+    </header>
+    <p>GCS SRE TEAM</p>
+    <footer>
+      <a href="/en/about" class="button">Learn More</a>
+    </footer>
+  </section>
+</section>
+
+      <footer id="site-footer">
+  
+      <ul class="social-icons">
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="mailto:gcssre@grandtechcloud.com" target="_blank" title="Email" class="far fa-envelope"></a></li>
+
+      </ul>
+  
+  <p class="copyright">
+    
+      &copy; 2019
+      
+        GrandtechCloud Service Blog
+      
+    .
+    Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/toml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src=/js/util.js></script>
+  <script src=/js/main.js></script>
+  <script src=/js/add-on.js></script>
+  
+
+
+
+    </div>
+  </body>
+</html>

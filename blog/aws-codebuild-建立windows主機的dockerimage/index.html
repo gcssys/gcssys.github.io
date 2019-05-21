@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="tw">
+  <head>
+  <meta charset="utf-8">
+<title>AWS CodeBuild - 建立Windows主機的DockerImage - GrandtechCloud Service Blog</title>
+<meta name="description" content="如何建立自己Windows主機的DockerImage">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <meta name="generator" content="Hugo 0.55.2" />
+  
+<meta itemprop="name" content="AWS CodeBuild - 建立Windows主機的DockerImage">
+<meta itemprop="description" content="如何建立自己Windows主機的DockerImage">
+
+
+<meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="252">
+
+
+
+<meta itemprop="keywords" content="CodeBuild,AWS,CICD," />
+
+  <meta property="og:title" content="AWS CodeBuild - 建立Windows主機的DockerImage" />
+<meta property="og:description" content="如何建立自己Windows主機的DockerImage" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://grandtechcloud.github.io/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/" />
+<meta property="article:published_time" content="2019-04-03T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-03T00:00:00&#43;00:00"/>
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AWS CodeBuild - 建立Windows主機的DockerImage"/>
+<meta name="twitter:description" content="如何建立自己Windows主機的DockerImage"/>
+
+  
+
+  <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+  
+    
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+      <link rel="stylesheet" href="/css/main.min.css">
+      <link rel="stylesheet" href="/css/add-on.css">
+    
+  
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/">
+        
+          
+            Blog
+          
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        <a href="/" class="link"><i class="fas fa-home">&nbsp;</i>Home</a>
+      
+        <a href="/about/" class="link"><i class="far fa-id-card">&nbsp;</i>About</a>
+      
+        <a href="/blog/" class="link"><i class="far fa-newspaper">&nbsp;</i>Blog</a>
+      
+        <a href="/categories/" class="link"><i class="fas fa-sitemap">&nbsp;</i>Categories</a>
+      
+        <a href="/contact/" class="link"><i class="far fa-envelope">&nbsp;</i>Contact</a>
+      
+      <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    <a href="#lang-menu" class="lang-toggle" lang="tw"><span class="flag-icon flag-icon-tw" alt="tw"></span></a>
+    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  <menu id="lang-menu" class="flyout-menu">
+  <a href="#" lang="tw" class="active"><span class="flag-icon flag-icon-tw" alt="tw"></span></a>
+  
+        <a href="https://grandtechcloud.github.io/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/" lang="en"><span class="flag-icon flag-icon-en" alt="en"></span></a>
+    
+  
+</menu>
+
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+  
+        <a href="mailto:?subject=Check out this post by &amp;body=" target="_blank" class="share-btn email">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+    </menu>
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="/"><img src="https://github.com/grandtechcloud/Pics/blob/master/images/avatar.png?raw=true" class="circle" width="" alt="GCS SRE TEAM" /></a>
+  <header>
+    <h1>GCS Service Blog</h1>
+  </header>
+  <main>
+    <p>If you can DREAM it, You can DO it!</p>
+  </main>
+  
+    <footer>
+      <ul class="social-icons">
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="mailto:gcssre@grandtechcloud.com" target="_blank" title="Email" class="far fa-envelope"></a></li>
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/">AWS CodeBuild - 建立Windows主機的DockerImage</a></h2>
+    
+    
+        <p>如何建立自己Windows主機的DockerImage</p>
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2019-04-03 00:00:00 &#43;0000 UTC">
+      April 3, 2019
+    </time>
+    <span class="author">GCS SRE Team</span>
+    
+        <p>2 minute read</p>
+    
+  </div>
+</header>
+
+  <section id="social-share">
+    
+
+
+
+  
+        <a href="mailto:?subject=Check out this post by &amp;body=" target="_blank" class="share-btn email">
+          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
+        </a>
+  
+
+
+  </section>
+  
+
+  <div class="content">
+    <p>如果想用AWS CodeBuild Windows Server 建置 .Net, 或者一些C# Framework, 有時候會遇到使用原生的無法正常編譯的問題, 這邊就要自己建立合適環境的Docker Image.</p>
+
+<p>Instructions
+環境建置：
+使用一台主機或者虛擬機或者直接
+Launch一台EC2 (Windows Sever 2016 with Containers)
+至少給60GB空間
+建議是t2. Medium以上的機器, build image效率會較好
+以下是直接透過EC2進行的步驟
+啟動完成後透過遠端桌面連入</p>
+
+<ul>
+<li>運行命令管理員(cmd.exe)</li>
+<li>建立build Image的工作目錄：
+<code>
+mkdir C:\BuildTools
+cd C:\BuildTools
+</code></li>
+<li>建立C:\BuildTools\Dockerfile:<br /></li>
+</ul>
+
+<pre><code># escape=`
+
+FROM microsoft/dotnet-framework:4.7.2-runtime
+
+SHELL [&quot;powershell&quot;, &quot;-Command&quot;, &quot;$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';&quot;]
+
+#Install NuGet CLI
+ENV NUGET_VERSION 4.4.1
+RUN New-Item -Type Directory $Env:ProgramFiles\NuGet; `
+    Invoke-WebRequest -UseBasicParsing https://dist.nuget.org/win-x86-commandline/v$Env:NUGET_VERSION/nuget.exe -OutFile $Env:ProgramFiles\NuGet\nuget.exe
+
+# Install VS Test Agent
+RUN Invoke-WebRequest -UseBasicParsing https://download.visualstudio.microsoft.com/download/pr/12210068/8a386d27295953ee79281fd1f1832e2d/vs_TestAgent.exe -OutFile vs_TestAgent.exe; `
+    Start-Process vs_TestAgent.exe -ArgumentList '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait; `
+    Remove-Item -Force vs_TestAgent.exe; `
+# Install VS Build Tools
+    Invoke-WebRequest -UseBasicParsing https://download.visualstudio.microsoft.com/download/pr/12210059/e64d79b40219aea618ce2fe10ebd5f0d/vs_BuildTools.exe -OutFile vs_BuildTools.exe; `
+    # Installer won't detect DOTNET_SKIP_FIRST_TIME_EXPERIENCE if ENV is used, must use setx /M
+    setx /M DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1; `
+    Start-Process vs_BuildTools.exe -ArgumentList '--add', 'Microsoft.VisualStudio.Workload.MSBuildTools', '--add', 'Microsoft.VisualStudio.Workload.NetCoreBuildTools', '--add', 'Microsoft.VisualStudio.Workload.WebBuildTools;includeRecommended', '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait; `
+    Remove-Item -Force vs_buildtools.exe; `
+    Remove-Item -Force -Recurse \&quot;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\&quot;; `
+    Remove-Item -Force -Recurse ${Env:TEMP}\*; `
+    Remove-Item -Force -Recurse \&quot;${Env:ProgramData}\Package Cache\&quot;
+
+# Set PATH in one layer to keep image size down.
+RUN setx /M PATH $(${Env:PATH} `
+    + \&quot;;${Env:ProgramFiles}\NuGet\&quot; `
+    + \&quot;;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\TestAgent\Common7\IDE\CommonExtensions\Microsoft\TestWindow\&quot; `
+    + \&quot;;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\&quot;)
+
+# Install Targeting Packs
+RUN @('4.0', '4.5.2', '4.6.2', '4.7.2') `
+    | %{ `
+        Invoke-WebRequest -UseBasicParsing https://dotnetbinaries.blob.core.windows.net/referenceassemblies/v${_}.zip -OutFile referenceassemblies.zip; `
+        Expand-Archive -Force referenceassemblies.zip -DestinationPath \&quot;${Env:ProgramFiles(x86)}\Reference Assemblies\Microsoft\Framework\.NETFramework\&quot;; `
+        Remove-Item -Force referenceassemblies.zip; `
+    }
+</code></pre>
+
+<ul>
+<li>執行build Image的指令
+<code>
+docker build -t buildtool:latest -m 3GB .
+</code></li>
+<li>等待運行完成後
+可以用下面的指令進入容器內測試
+<code>
+docker run -it buildtool
+</code></li>
+<li>測試ＯＫ後可以準備上傳到AWS ECR
+<code>
+aws ecr get-login --region region --no-include-email
+</code>
+*將輸出的登入資訊再貼一次登入docker
+登入docker後即可將剛剛的buildtool上傳到aws ecr
+<code>
+docker tag buildtool:latest #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/ buildtool:latest
+docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
+</code></li>
+<li>上傳完成後即可在AWS ECR找到剛剛上傳的Image, 在CodeBuild的選項也就出現可以選擇</li>
+</ul>
+
+  </div>
+  <footer>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8">實務應用</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/tags/codebuild">CodeBuild</a></li>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/tags/aws">AWS</a></li>
+          
+            
+            <li><a class="article-category-link" href="https://grandtechcloud.github.io/tags/cicd">CICD</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+<article class="post">
+  
+
+</article>
+<div class="pagination">
+  
+    <a href="/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/" class="button big previous"><i class="fas fa-angle-left"></i> CICD相關服務介紹</a>
+  
+  
+</div>
+
+
+      </main>
+      <section id="site-sidebar">
+  <section id="recent-posts">
+    <header>
+      <h1>近期貼文</h1>
+    </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/">AWS CodeBuild - 建立Windows主機的DockerImage</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/">CICD相關服務介紹</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD 專案無法編譯處理</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/">K6.io-壓測工具介紹</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
+    
+    
+  </section>
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/categories">分類</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8/">實務應用<span class="count">3</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/%E4%BB%8B%E7%B4%B9/">介紹<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  <section id="mini-bio">
+    <header>
+      <h1>關於</h1>
+    </header>
+    <p>GCS SRE TEAM</p>
+    <footer>
+      <a href="/about" class="button">了解更多</a>
+    </footer>
+  </section>
+</section>
+
+      <footer id="site-footer">
+  
+      <ul class="social-icons">
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="mailto:gcssre@grandtechcloud.com" target="_blank" title="Email" class="far fa-envelope"></a></li>
+
+      </ul>
+  
+  <p class="copyright">
+    
+      &copy; 2019
+      
+        GrandtechCloud Service Blog
+      
+    .
+    Powered by <a href="//gohugo.io" target="_blank" rel="noopener">Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/toml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src=/js/util.js></script>
+  <script src=/js/main.js></script>
+  <script src=/js/add-on.js></script>
+  
+
+
+
+    </div>
+  </body>
+</html>
