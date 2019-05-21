@@ -19,8 +19,13 @@
       <guid>https://gcssys.github.io/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/</guid>
       <description>如果想用AWS CodeBuild Windows Server 建置 .Net, 或者一些C# Framework, 有時候會遇到使用原生的無法正常編譯的問題, 這邊就要自己建立合適環境的Docker Image.
 Instructions 環境建置： 使用一台主機或者虛擬機或者直接 Launch一台EC2 (Windows Sever 2016 with Containers) 至少給60GB空間 建議是t2. Medium以上的機器, build image效率會較好 以下是直接透過EC2進行的步驟 啟動完成後透過遠端桌面連入
- 運行命令管理員(cmd.exe) 建立build Image的工作目錄：  mkdir C:\BuildTools cd C:\BuildTools  建立C:\BuildTools\Dockerfile:
-  # escape=` FROM microsoft/dotnet-framework:4.7.2-runtime SHELL [&amp;quot;powershell&amp;quot;, &amp;quot;-Command&amp;quot;, &amp;quot;$ErrorActionPreference = &#39;Stop&#39;; $ProgressPreference = &#39;SilentlyContinue&#39;;&amp;quot;] #Install NuGet CLI ENV NUGET_VERSION 4.4.1 RUN New-Item -Type Directory $Env:ProgramFiles\NuGet; ` Invoke-WebRequest -UseBasicParsing https://dist.nuget.org/win-x86-commandline/v$Env:NUGET_VERSION/nuget.exe -OutFile $Env:ProgramFiles\NuGet\nuget.exe # Install VS Test Agent RUN Invoke-WebRequest -UseBasicParsing https://download.</description>
+ 運行命令管理員(cmd.exe) 建立build Image的工作目錄：
+mkdir C:\BuildTools cd C:\BuildTools
+ 建立C:\BuildTools\Dockerfile:
+escape=` FROM microsoft/dotnet-framework:4.7.2-runtime
+SHELL [&amp;ldquo;powershell&amp;rdquo;, &amp;ldquo;-Command&amp;rdquo;, &amp;ldquo;$ErrorActionPreference = &amp;lsquo;Stop&amp;rsquo;; $ProgressPreference = &amp;lsquo;SilentlyContinue&amp;rsquo;;&amp;rdquo;]
+#Install NuGet CLI ENV NUGET_VERSION 4.4.1 RUN New-Item -Type Directory $Env:ProgramFiles\NuGet; ` Invoke-WebRequest -UseBasicParsing https://dist.nuget.org/win-x86-commandline/v$Env:NUGET_VERSION/nuget.exe -OutFile $Env:ProgramFiles\NuGet\nuget.exe
+Install VS Test Agent RUN Invoke-WebRequest -UseBasicParsing https://download.</description>
     </item>
     
     <item>
