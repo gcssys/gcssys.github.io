@@ -21,5 +21,15 @@
 Instructions Environment: Use a host or virtual machine or a direct EC2 (Windows Sever 2016 with Containers). At least 60GB of space is recommended for t2. Medium or higher. The build image will be better. The following is directly through EC2.</description>
     </item>
     
+    <item>
+      <title>DotNet CI/CD Troubleshooting</title>
+      <link>https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/</guid>
+      <description>There are customer projects that want to import CI/CD. The project source code SourceCode is made with DotNet Web. Because the customer has not yet used the version control, here he introduced him to use Github, and by the way taught the use of Git.
+The first thing I want to use here is TravisCI, because it is directly connected to Github, and it is also convenient for customers. However, testing the test code obtained from the customer side, a test encounters tragedy&amp;hellip; Because Travis is using the Linux Container to build the project, but the support for C# is limited, especially the use of many Windows frameworks, only to find TravisCI.</description>
+    </item>
+    
   </channel>
 </rss>

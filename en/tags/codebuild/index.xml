@@ -22,16 +22,13 @@ Instructions Environment: Use a host or virtual machine or a direct EC2 (Windows
     </item>
     
     <item>
-      <title>DotNet CI/CD 專案無法編譯處理</title>
+      <title>DotNet CI/CD Troubleshooting</title>
       <link>https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/</guid>
-      <description>有客戶專案想導入CI/CD, 專案的網頁SourceCode是用DotNet Web製作, 因為客戶也還沒使用版控, 這邊就介紹他使用了Github, 順便教學了一下Git的使用。
-這邊第一個想選用的是TravisCI, 因為直接與Github對接, 也方便客戶使用 不過測試從客戶那邊取得的測試程式碼, 一測試就遭遇悲劇&amp;hellip; 因為Travis是用Linux Container來Build專案, 但對C#的支援有限, 尤其是使用到Windows的許多Framework, 測到這邊只能放棄TravisCI。
-再來有找到一款有提供Windows主機做CI的Saas服務, Appveyor, 對C#支援性提高許多, 我一放入測試專案測試就編譯成功了！ 後續跟客戶拿了第二包程式碼進行測試, 因為真的有放入一些商業用途的程式碼, 編譯了又出現缺少東西的問題&amp;hellip;只好再換下一個&amp;hellip;
-最後使用了AWS的CodeBuild, 有提供Windows的主機, 不過也遇到無法正常編譯的問題, 但AWS有提供自製docker image的選項, 所以這邊就研究了一下怎麼建立配合客戶專案的Image, 詳細可以看這邊({% post_link AWS-CodeBuild-建立Windows主機的DockerImage 建立客製化Image %}), 透過直接幫客戶建置了必須的環境, 這塊才算安然度過&amp;hellip; 不過解決了第二包程式碼之後, 正式專案接入後, 又遭遇到問題囉, 因為客戶先前其實只有一個人在開發, 所以其實專案相依性上沒有控制得很好, 一放上雲端後有各種的missing refence問題, 這邊好像沒啥好方式, 只能跟客戶一起手把手訂下一些規範, 然後幫忙處理一下專案的問題&amp;hellip;
-經過了這些努力, 把客戶的CI/CD最難過的一關解決了, 也能開始後續的自動部署部分。</description>
+      <description>There are customer projects that want to import CI/CD. The project source code SourceCode is made with DotNet Web. Because the customer has not yet used the version control, here he introduced him to use Github, and by the way taught the use of Git.
+The first thing I want to use here is TravisCI, because it is directly connected to Github, and it is also convenient for customers. However, testing the test code obtained from the customer side, a test encounters tragedy&amp;hellip; Because Travis is using the Linux Container to build the project, but the support for C# is limited, especially the use of many Windows frameworks, only to find TravisCI.</description>
     </item>
     
   </channel>

@@ -2,36 +2,36 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>DotNet CI/CD 專案無法編譯處理 - GrandtechCloud Service Blog</title>
-<meta name="description" content="DotNet CI/CD 專案無法編譯處理">
+<title>DotNet CI/CD Troubleshooting - GrandtechCloud Service Blog</title>
+<meta name="description" content="DotNet CI/CD Troubleshooting">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.55.2" />
   
-<meta itemprop="name" content="DotNet CI/CD 專案無法編譯處理">
-<meta itemprop="description" content="DotNet CI/CD 專案無法編譯處理">
+<meta itemprop="name" content="DotNet CI/CD Troubleshooting">
+<meta itemprop="description" content="DotNet CI/CD Troubleshooting">
 
 
 <meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="49">
+<meta itemprop="wordCount" content="353">
 
 
 
 <meta itemprop="keywords" content="CodeBuild,AWS,CICD," />
 
-  <meta property="og:title" content="DotNet CI/CD 專案無法編譯處理" />
-<meta property="og:description" content="DotNet CI/CD 專案無法編譯處理" />
+  <meta property="og:title" content="DotNet CI/CD Troubleshooting" />
+<meta property="og:description" content="DotNet CI/CD Troubleshooting" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/" />
 <meta property="article:published_time" content="2019-04-03T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2019-04-03T00:00:00&#43;00:00"/>
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="DotNet CI/CD 專案無法編譯處理"/>
-<meta name="twitter:description" content="DotNet CI/CD 專案無法編譯處理"/>
+<meta name="twitter:title" content="DotNet CI/CD Troubleshooting"/>
+<meta name="twitter:description" content="DotNet CI/CD Troubleshooting"/>
 
   
 
@@ -176,10 +176,10 @@
   <header>
   <div class="title">
     
-        <h2><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD 專案無法編譯處理</a></h2>
+        <h2><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD Troubleshooting</a></h2>
     
     
-        <p>DotNet CI/CD 專案無法編譯處理</p>
+        <p>DotNet CI/CD Troubleshooting</p>
     
 </div>
   <div class="meta">
@@ -188,7 +188,7 @@
     </time>
     <span class="author">GCS SRE Team</span>
     
-        <p>1 minute read</p>
+        <p>2 minute read</p>
     
   </div>
 </header>
@@ -209,28 +209,28 @@
   
 
   <div class="content">
-    <p>有客戶專案想導入CI/CD, 專案的網頁SourceCode是用DotNet Web製作,
-因為客戶也還沒使用版控, 這邊就介紹他使用了Github, 順便教學了一下Git的使用。</p>
+    <p>There are customer projects that want to import CI/CD. The project source code SourceCode is made with DotNet Web.
+Because the customer has not yet used the version control, here he introduced him to use Github, and by the way taught the use of Git.</p>
 
-<p>這邊第一個想選用的是TravisCI, 因為直接與Github對接, 也方便客戶使用
-不過測試從客戶那邊取得的測試程式碼, 一測試就遭遇悲劇&hellip;
+<p>The first thing I want to use here is TravisCI, because it is directly connected to Github, and it is also convenient for customers.
+However, testing the test code obtained from the customer side, a test encounters tragedy&hellip;
 <img src="https://github.com/grandtechcloud/Pics/blob/master/images/travis_fail.png?raw=true" alt="" /></p>
 
-<p>因為Travis是用Linux Container來Build專案, 但對C#的支援有限, 尤其是使用到Windows的許多Framework, 測到這邊只能放棄TravisCI。</p>
+<p>Because Travis is using the Linux Container to build the project, but the support for C# is limited, especially the use of many Windows frameworks, only to find TravisCI.</p>
 
-<p>再來有找到一款有提供Windows主機做CI的Saas服務, Appveyor, 對C#支援性提高許多, 我一放入測試專案測試就編譯成功了！
+<p>Then I found a Saas service that provides Windows hosting for CI. Appveyor has a lot of support for C#. I compiled it successfully after I put it into the test project!
 <img src="https://github.com/grandtechcloud/Pics/blob/master/images/success.png?raw=true" alt="" /></p>
 
-<p>後續跟客戶拿了第二包程式碼進行測試, 因為真的有放入一些商業用途的程式碼, 編譯了又出現缺少東西的問題&hellip;只好再換下一個&hellip;</p>
+<p>Followed by the customer to take the second package of code for testing, because there are really some commercial use of the code, compiled and there is a problem of missing things &hellip; had to change another&hellip;</p>
 
-<p>最後使用了AWS的CodeBuild, 有提供Windows的主機, 不過也遇到無法正常編譯的問題, 但AWS有提供自製docker image的選項, 所以這邊就研究了一下怎麼建立配合客戶專案的Image, 詳細可以看這邊({% post_link AWS-CodeBuild-建立Windows主機的DockerImage 建立客製化Image %}), 透過直接幫客戶建置了必須的環境, 這塊才算安然度過&hellip;
+<p>Finally, I used AWS&rsquo;s CodeBuild. I have a host for Windows, but I also have problems with it. But AWS has the option of providing a homemade docker image. So I have studied how to create an image with the client project. Look here ({% post_link AWS-CodeBuild-Create a Windows host DockerImage to create a customized Image %}), by directly helping the customer to build the necessary environment, this piece is safe to spend&hellip;
 <img src="https://github.com/grandtechcloud/Pics/blob/master/images/images.png?raw=true" alt="" /></p>
 
-<p>不過解決了第二包程式碼之後, 正式專案接入後, 又遭遇到問題囉, 因為客戶先前其實只有一個人在開發, 所以其實專案相依性上沒有控制得很好, 一放上雲端後有各種的missing refence問題, 這邊好像沒啥好方式, 只能跟客戶一起手把手訂下一些規範, 然後幫忙處理一下專案的問題&hellip;</p>
+<p>However, after solving the second package code, after the official project was accessed, I encountered another problem. Because the customer had only one person in the past, the project dependency was not well controlled. After putting it on the cloud, there were various kinds of things. Missing refence problem, there seems to be no good way, you can only set some specifications with the customer, and then help deal with the problem of the project&hellip;</p>
 
 <p><img src="https://github.com/grandtechcloud/Pics/blob/master/images/fixcode.png?raw=true" alt="" /></p>
 
-<p>經過了這些努力, 把客戶的CI/CD最難過的一關解決了, 也能開始後續的自動部署部分。</p>
+<p>After these efforts, the most difficult part of the customer&rsquo;s CI/CD has been solved, and the subsequent automatic deployment part can also be started.</p>
 
   </div>
   <footer>
@@ -242,7 +242,7 @@
         <ul>
           
             
-            <li><a class="article-category-link" href="https://gcssys.github.io/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8">實務應用</a></li>
+            <li><a class="article-category-link" href="https://gcssys.github.io/en/categories/usage">Usage</a></li>
           
         </ul>
       </li>
@@ -320,7 +320,7 @@
 
       </section>
       <header>
-        <h1><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD 專案無法編譯處理</a></h1>
+        <h1><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD Troubleshooting</a></h1>
         <time class="published" datetime="">April 3, 2019</time>
       </header>
     </article>
@@ -352,7 +352,7 @@
           
           <li>
             
-              <a href="/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8/">實務應用<span class="count">2</span></a>
+              <a href="/en/categories/usage/">usage<span class="count">2</span></a>
             
           
           <li>
@@ -362,7 +362,7 @@
           
           <li>
             
-              <a href="/en/categories/usage/">usage<span class="count">1</span></a>
+              <a href="/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8/">實務應用<span class="count">1</span></a>
             
           
           </li>
