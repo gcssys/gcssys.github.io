@@ -16,7 +16,7 @@
 
 <meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="250">
+<meta itemprop="wordCount" content="244">
 
 
 
@@ -209,95 +209,98 @@
   
 
   <div class="content">
-    
-
-<p>如果想用AWS CodeBuild Windows Server 建置 .Net, 或者一些C# Framework, 有時候會遇到使用原生的無法正常編譯的問題, 這邊就要自己建立合適環境的Docker Image.</p>
+    <p>如果想用AWS CodeBuild Windows Server 建置 .Net, 或者一些C# Framework, 有時候會遇到使用原生的無法正常編譯的問題, 這邊就要自己建立合適環境的Docker Image.</p>
 
 <p>Instructions 環境建置： 使用一台主機或者虛擬機或者直接 Launch一台EC2 (Windows Sever 2016 with Containers) 至少給60GB空間 建議是t2. Medium以上的機器, build image效率會較好 以下是直接透過EC2進行的步驟 啟動完成後透過遠端桌面連入</p>
 
 <ul>
-<li>運行命令管理員(cmd.exe)<br /></li>
-
-<li><p>建立build Image的工作目錄：</p>
-
-<pre><code>mkdir C:\\BuildTools
-cd C:\\BuildTools
-</code></pre></li>
-
-<li><p>建立C:\BuildTools\Dockerfile:<br />
-```</p>
-
-<h1 id="escape">escape=`</h1></li>
+<li>運行命令管理員(cmd.exe)</li>
+<li>建立build Image的工作目錄：</li>
 </ul>
 
-<p>FROM microsoft/dotnet-framework:4.7.2-runtime</p>
+<pre><code>  mkdir C:\\BuildTools
+  cd C:\\BuildTools
+</code></pre>
 
-<p>SHELL [&ldquo;powershell&rdquo;, &ldquo;-Command&rdquo;, &ldquo;$ErrorActionPreference = &lsquo;Stop&rsquo;; $ProgressPreference = &lsquo;SilentlyContinue&rsquo;;&rdquo;]</p>
+<ul>
+<li>建立C:\BuildTools\Dockerfile:<br /></li>
+</ul>
 
-<p>#Install NuGet CLI
+<pre><code>  # escape=\`
+
+  FROM microsoft/dotnet-framework:4.7.2-runtime
+
+  SHELL \[&quot;powershell&quot;, &quot;-Command&quot;, &quot;$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';&quot;\]
+
+  \#Install NuGet CLI
   ENV NUGET_VERSION 4.4.1
-  RUN New-Item -Type Directory $Env:ProgramFiles\NuGet; `
-  Invoke-WebRequest -UseBasicParsing <a href="https://dist.nuget.org/win-x86-commandline/v$Env:NUGET_VERSION/nuget.exe">https://dist.nuget.org/win-x86-commandline/v$Env:NUGET_VERSION/nuget.exe</a> -OutFile $Env:ProgramFiles\NuGet\nuget.exe</p>
+  RUN New-Item -Type Directory $Env:ProgramFiles\\NuGet; \`
+  Invoke-WebRequest -UseBasicParsing https://dist.nuget.org/win-x86-commandline/v$Env:NUGET_VERSION/nuget.exe -OutFile $Env:ProgramFiles\\NuGet\\nuget.exe
 
-<p># Install VS Test Agent</p>
+  # Install VS Test Agent
 
-<p>RUN Invoke-WebRequest -UseBasicParsing <a href="https://download.visualstudio.microsoft.com/download/pr/12210068/8a386d27295953ee79281fd1f1832e2d/vs_TestAgent.exe">https://download.visualstudio.microsoft.com/download/pr/12210068/8a386d27295953ee79281fd1f1832e2d/vs_TestAgent.exe</a> -OutFile vs_TestAgent.exe; <code>Start-Process vs_TestAgent.exe -ArgumentList '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait;</code>
-  Remove-Item -Force vs_TestAgent.exe; `</p>
+  RUN Invoke-WebRequest -UseBasicParsing https://download.visualstudio.microsoft.com/download/pr/12210068/8a386d27295953ee79281fd1f1832e2d/vs_TestAgent.exe -OutFile vs_TestAgent.exe; `Start-Process vs_TestAgent.exe -ArgumentList '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait;`
+  Remove-Item -Force vs_TestAgent.exe; \`
 
-<p># Install VS Build Tools</p>
+  # Install VS Build Tools
 
-<pre><code>    Invoke-WebRequest -UseBasicParsing https://download.visualstudio.microsoft.com/download/pr/12210059/e64d79b40219aea618ce2fe10ebd5f0d/vs_BuildTools.exe -OutFile vs_BuildTools.exe; `
-    # Installer won't detect DOTNET_SKIP_FIRST_TIME_EXPERIENCE if ENV is used, must use setx /M
-    setx /M DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1; `
-    Start-Process vs_BuildTools.exe -ArgumentList '--add', 'Microsoft.VisualStudio.Workload.MSBuildTools', '--add', 'Microsoft.VisualStudio.Workload.NetCoreBuildTools', '--add', 'Microsoft.VisualStudio.Workload.WebBuildTools;includeRecommended', '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait; `
-    Remove-Item -Force vs_buildtools.exe; `
-    Remove-Item -Force -Recurse \&quot;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\&quot;; `
-    Remove-Item -Force -Recurse ${Env:TEMP}\*; `
-    Remove-Item -Force -Recurse \&quot;${Env:ProgramData}\Package Cache\&quot;
+        Invoke-WebRequest -UseBasicParsing https://download.visualstudio.microsoft.com/download/pr/12210059/e64d79b40219aea618ce2fe10ebd5f0d/vs_BuildTools.exe -OutFile vs_BuildTools.exe; `
+        # Installer won't detect DOTNET_SKIP_FIRST_TIME_EXPERIENCE if ENV is used, must use setx /M
+        setx /M DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1; `
+        Start-Process vs_BuildTools.exe -ArgumentList '--add', 'Microsoft.VisualStudio.Workload.MSBuildTools', '--add', 'Microsoft.VisualStudio.Workload.NetCoreBuildTools', '--add', 'Microsoft.VisualStudio.Workload.WebBuildTools;includeRecommended', '--quiet', '--norestart', '--nocache' -NoNewWindow -Wait; `
+        Remove-Item -Force vs_buildtools.exe; `
+        Remove-Item -Force -Recurse \&quot;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\&quot;; `
+        Remove-Item -Force -Recurse ${Env:TEMP}\*; `
+        Remove-Item -Force -Recurse \&quot;${Env:ProgramData}\Package Cache\&quot;
+
+  # Set PATH in one layer to keep image size down.
+
+  RUN setx /M PATH $(${Env:PATH} `+ \&quot;;${Env:ProgramFiles}\NuGet\&quot;`
+  \+ &quot;;${Env:ProgramFiles(x86)}\\Microsoft Visual Studio\\2017\\TestAgent\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow&quot; \`
+  \+ &quot;;${Env:ProgramFiles(x86)}\\Microsoft Visual Studio\\2017\\BuildTools\\MSBuild\\15.0\\Bin&quot;)
+
+  # Install Targeting Packs
+
+  RUN @('4.0', '4.5.2', '4.6.2', '4.7.2') `| %{`
+  Invoke-WebRequest -UseBasicParsing https://dotnetbinaries.blob.core.windows.net/referenceassemblies/v${_}.zip -OutFile referenceassemblies.zip; `Expand-Archive -Force referenceassemblies.zip -DestinationPath \&quot;${Env:ProgramFiles(x86)}\Reference Assemblies\Microsoft\Framework\.NETFramework\&quot;;`
+  Remove-Item -Force referenceassemblies.zip; \`
+  }
 </code></pre>
 
-<p># Set PATH in one layer to keep image size down.</p>
+<ul>
+<li>執行build Image的指令</li>
+</ul>
 
-<p>RUN setx /M PATH $(${Env:PATH} <code>+ \&quot;;${Env:ProgramFiles}\NuGet\&quot;</code>
-  + &ldquo;;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\TestAgent\Common7\IDE\CommonExtensions\Microsoft\TestWindow&rdquo; `
-  + &ldquo;;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin&rdquo;)</p>
-
-<p># Install Targeting Packs</p>
-
-<p>RUN @(&lsquo;4.0&rsquo;, &lsquo;4.5.2&rsquo;, &lsquo;4.6.2&rsquo;, &lsquo;4.7.2&rsquo;) <code>| %{</code>
-  Invoke-WebRequest -UseBasicParsing <a href="https://dotnetbinaries.blob.core.windows.net/referenceassemblies/v${_}.zip">https://dotnetbinaries.blob.core.windows.net/referenceassemblies/v${_}.zip</a> -OutFile referenceassemblies.zip; <code>Expand-Archive -Force referenceassemblies.zip -DestinationPath \&quot;${Env:ProgramFiles(x86)}\Reference Assemblies\Microsoft\Framework\.NETFramework\&quot;;</code>
-  Remove-Item -Force referenceassemblies.zip; `
-  }</p>
-
-<pre><code>
-* 執行build Image的指令   
+<pre><code>  docker build -t buildtool:latest -m 3GB .
 </code></pre>
 
-<p>docker build -t buildtool:latest -m 3GB .</p>
+<ul>
+<li>等待運行完成後<br />
+可以用下面的指令進入容器內測試</li>
+</ul>
 
-<pre><code>
-* 等待運行完成後   
-  可以用下面的指令進入容器內測試   
+<pre><code>  docker run -it buildtool
 </code></pre>
 
-<p>docker run -it buildtool</p>
+<ul>
+<li>測試ＯＫ後可以準備上傳到AWS ECR</li>
+</ul>
 
-<pre><code>* 測試ＯＫ後可以準備上傳到AWS ECR   
+<pre><code>  aws ecr get-login --region region --no-include-email
 </code></pre>
 
-<p>aws ecr get-login &ndash;region region &ndash;no-include-email</p>
+<ul>
+<li>將輸出的登入資訊再貼一次登入docker<br />
+登入docker後即可將剛剛的buildtool上傳到aws ecr</li>
+</ul>
 
-<pre><code>
-* 將輸出的登入資訊再貼一次登入docker   
-  登入docker後即可將剛剛的buildtool上傳到aws ecr   
+<pre><code>    docker tag buildtool:latest #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/ buildtool:latest
+    docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
 </code></pre>
 
-<pre><code>docker tag buildtool:latest #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/ buildtool:latest
-docker push #ACCOUNT_ID#.dkr.ecr.#REGION#.amazonaws.com/buildtool:latest
-</code></pre>
-
-<p>```
-* 上傳完成後即可在AWS ECR找到剛剛上傳的Image, 在CodeBuild的選項也就出現可以選擇</p>
+<ul>
+<li>上傳完成後即可在AWS ECR找到剛剛上傳的Image, 在CodeBuild的選項也就出現可以選擇</li>
+</ul>
 
   </div>
   <footer>
