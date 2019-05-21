@@ -2,36 +2,28 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>DotNet CI/CD 專案無法編譯處理 - GrandtechCloud Service Blog</title>
-<meta name="description" content="DotNet CI/CD 專案無法編譯處理">
+<title>Hello - GrandtechCloud Service Blog</title>
+<meta name="description" content="If you can DREAM it, You can DO it!">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.55.2" />
   
-<meta itemprop="name" content="DotNet CI/CD 專案無法編譯處理">
-<meta itemprop="description" content="DotNet CI/CD 專案無法編譯處理">
+<meta itemprop="name" content="Hello">
+<meta itemprop="description" content="">
 
 
-<meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="49">
+  <meta property="og:title" content="Hello" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://gcssys.github.io/en/tags/hello/" />
 
-
-
-<meta itemprop="keywords" content="CodeBuild,AWS,CICD," />
-
-  <meta property="og:title" content="DotNet CI/CD 專案無法編譯處理" />
-<meta property="og:description" content="DotNet CI/CD 專案無法編譯處理" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/" />
-<meta property="article:published_time" content="2019-04-03T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-04-03T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2019-05-20T16:00:00&#43;00:00"/>
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="DotNet CI/CD 專案無法編譯處理"/>
-<meta name="twitter:description" content="DotNet CI/CD 專案無法編譯處理"/>
+<meta name="twitter:title" content="Hello"/>
+<meta name="twitter:description" content=""/>
 
   
 
@@ -60,7 +52,7 @@
       <a href="/en/">
         
           
-            Blog
+            Tags
           
         
       </a>
@@ -90,7 +82,12 @@
   <menu id="lang-menu" class="flyout-menu">
   <a href="#" lang="en" class="active"><span class="flag-icon flag-icon-en" alt="en"></span></a>
   
-        <a href="https://gcssys.github.io/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/" lang="tw"><span class="flag-icon flag-icon-tw" alt="tw"></span></a>
+    
+      
+        <a href="/tw" lang="tw" class="no-lang"><span class="flag-icon flag-icon-tw" alt="tw"></span></a>
+      
+    
+      
     
   
 </menu>
@@ -126,6 +123,8 @@
     <footer>
       <ul class="social-icons">
         
+    <li><a href="/en/tags/hello/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
+
 
         
 
@@ -172,118 +171,18 @@
 </section>
 
       <main id="site-main">
-        <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/">DotNet CI/CD 專案無法編譯處理</a></h2>
-    
-    
-        <p>DotNet CI/CD 專案無法編譯處理</p>
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2019-04-03 00:00:00 &#43;0000 UTC">
-      April 3, 2019
-    </time>
-    <span class="author">GCS SRE Team</span>
-    
-        <p>1 minute read</p>
-    
-  </div>
-</header>
-
-  <section id="social-share">
-    
-
-
-
-  
-        <a href="mailto:?subject=Check out this post by &amp;body=" target="_blank" class="share-btn email">
-          <i class="fas fa-envelope"></i><p>&nbsp;Email</p>
-        </a>
-  
-
-
-  </section>
-  
-
-  <div class="content">
-    <p>有客戶專案想導入CI/CD, 專案的網頁SourceCode是用DotNet Web製作,
-因為客戶也還沒使用版控, 這邊就介紹他使用了Github, 順便教學了一下Git的使用。</p>
-
-<p>這邊第一個想選用的是TravisCI, 因為直接與Github對接, 也方便客戶使用
-不過測試從客戶那邊取得的測試程式碼, 一測試就遭遇悲劇&hellip;
-<img src="https://github.com/grandtechcloud/Pics/blob/master/images/travis_fail.png?raw=true" alt="" /></p>
-
-<p>因為Travis是用Linux Container來Build專案, 但對C#的支援有限, 尤其是使用到Windows的許多Framework, 測到這邊只能放棄TravisCI。</p>
-
-<p>再來有找到一款有提供Windows主機做CI的Saas服務, Appveyor, 對C#支援性提高許多, 我一放入測試專案測試就編譯成功了！
-<img src="https://github.com/grandtechcloud/Pics/blob/master/images/success.png?raw=true" alt="" /></p>
-
-<p>後續跟客戶拿了第二包程式碼進行測試, 因為真的有放入一些商業用途的程式碼, 編譯了又出現缺少東西的問題&hellip;只好再換下一個&hellip;</p>
-
-<p>最後使用了AWS的CodeBuild, 有提供Windows的主機, 不過也遇到無法正常編譯的問題, 但AWS有提供自製docker image的選項, 所以這邊就研究了一下怎麼建立配合客戶專案的Image, 詳細可以看這邊({% post_link AWS-CodeBuild-建立Windows主機的DockerImage 建立客製化Image %}), 透過直接幫客戶建置了必須的環境, 這塊才算安然度過&hellip;
-<img src="https://github.com/grandtechcloud/Pics/blob/master/images/images.png?raw=true" alt="" /></p>
-
-<p>不過解決了第二包程式碼之後, 正式專案接入後, 又遭遇到問題囉, 因為客戶先前其實只有一個人在開發, 所以其實專案相依性上沒有控制得很好, 一放上雲端後有各種的missing refence問題, 這邊好像沒啥好方式, 只能跟客戶一起手把手訂下一些規範, 然後幫忙處理一下專案的問題&hellip;</p>
-
-<p><img src="https://github.com/grandtechcloud/Pics/blob/master/images/fixcode.png?raw=true" alt="" /></p>
-
-<p>經過了這些努力, 把客戶的CI/CD最難過的一關解決了, 也能開始後續的自動部署部分。</p>
-
-  </div>
-  <footer>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://gcssys.github.io/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8">實務應用</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://gcssys.github.io/en/tags/codebuild">CodeBuild</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://gcssys.github.io/en/tags/aws">AWS</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://gcssys.github.io/en/tags/cicd">CICD</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-<article class="post">
-  
-
-</article>
+        <h1>Hello</h1>
+        
+        
+        
 <div class="pagination">
   
-    <a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/" class="button big previous"><i class="fas fa-angle-left"></i> K6.io-壓測工具介紹</a>
+    <a href="#" class="disabled button big previous"><i class="fas fa-angle-left"></i></a>
   
   
-    <a href="/en/blog/cicd%E7%9B%B8%E9%97%9C%E6%9C%8D%E5%8B%99%E4%BB%8B%E7%B4%B9/" class="button big next">CICD相關服務介紹 <i class="fas fa-angle-right"></i></a>
+    <a href="#" class="disabled button big next"><i class="fas fa-angle-right"></i></a>
   
 </div>
-
 
       </main>
       <section id="site-sidebar">
@@ -386,6 +285,8 @@
   
       <ul class="social-icons">
         
+    <li><a href="/en/tags/hello/index.xml" type="application/rss+xml" target="_blank" title="RSS" class="fas fa-rss"></a></li>
+
 
         
 

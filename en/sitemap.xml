@@ -19,6 +19,22 @@
   </url>
   
   <url>
+    <loc>https://gcssys.github.io/en/categories/</loc>
+    <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tw"
+                href="https://gcssys.github.io/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gcssys.github.io/en/categories/"
+                />
+  </url>
+  
+  <url>
     <loc>https://gcssys.github.io/en/</loc>
     <lastmod>2019-05-20T16:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -35,8 +51,36 @@
   </url>
   
   <url>
+    <loc>https://gcssys.github.io/en/tags/hello/</loc>
+    <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://gcssys.github.io/en/blog/hello-world/</loc>
     <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gcssys.github.io/en/tags/</loc>
+    <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tw"
+                href="https://gcssys.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gcssys.github.io/en/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://gcssys.github.io/en/categories/world/</loc>
+    <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -102,22 +146,6 @@
   </url>
   
   <url>
-    <loc>https://gcssys.github.io/en/categories/</loc>
-    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tw"
-                href="https://gcssys.github.io/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gcssys.github.io/en/categories/"
-                />
-  </url>
-  
-  <url>
     <loc>https://gcssys.github.io/en/tags/codebuild/</loc>
     <lastmod>2019-04-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -160,22 +188,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://gcssys.github.io/en/tags/</loc>
-    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tw"
-                href="https://gcssys.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gcssys.github.io/en/tags/"
                 />
   </url>
   
