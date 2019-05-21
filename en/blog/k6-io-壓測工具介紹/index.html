@@ -16,7 +16,7 @@
 
 <meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="55">
+<meta itemprop="wordCount" content="50">
 
 
 
@@ -211,8 +211,7 @@
   <div class="content">
     <p>有時候上線之前, 我們會希望伺服器是有經過壓力測試的, 而不是開放第一天被壓力測試, 這邊就需要準備一些工具來使用&hellip;這邊就介紹一款K6.io, 是 <a href="https://www.loadimpact.com">https://www.loadimpact.com</a>  底層使用的壓測工具。</p>
 
-<p>官方網站：<a href="https://k6.io/">https://k6.io/</a>
-<img src="https://k6.io/wp-content/uploads/2017/04/d9a22e5-demo.gif" alt="" /></p>
+<p>官方網站：<a href="https://k6.io/">https://k6.io/</a></p>
 
 <p>使用此工具很簡單, 指定人數/時間/腳本就可以運作
 問題點會出在腳本怎麼撰寫
@@ -222,26 +221,27 @@
 
 <ul>
 <li>建立一個test.js</li>
-<li>輸入下面的內容 後存檔
-```
-import http from &ldquo;k6/http&rdquo;;
-import { check } from &ldquo;k6&rdquo;;</li>
-</ul>
+
+<li><p>輸入下面的內容 後存檔</p>
+
+<p>import http from &ldquo;k6/http&rdquo;;
+import { check } from &ldquo;k6&rdquo;;</p>
 
 <p>export default function() {
   check(http.get(&ldquo;www.targetweb.com&rdquo;), {
     &ldquo;status is 200&rdquo;: &reg; =&gt; r.status == 200,
   });
-}</p>
+}</p></li>
 
-<pre><code>* 用以下指令運作工具
-</code></pre>
+<li><p>用以下指令運作工具</p>
 
-<p>k6 &ndash;vus=10 &ndash;duration=300s test.js
-```
-* 就會用10個人持續連線網站300秒
-* 最後統計出連線時間的數據
-<img src="https://files.readme.io/b6eb148-Screen_Shot_2017-11-29_at_12.01.17.png" alt="" /></p>
+<p>k6 &ndash;vus=10 &ndash;duration=300s test.js</p></li>
+
+<li><p>就會用10個人持續連線網站300秒</p></li>
+
+<li><p>最後統計出連線時間的數據
+<img src="https://files.readme.io/b6eb148-Screen_Shot_2017-11-29_at_12.01.17.png" alt="" /></p></li>
+</ul>
 
   </div>
   <footer>
