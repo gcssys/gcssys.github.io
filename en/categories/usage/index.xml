@@ -12,6 +12,17 @@
     
     
     <item>
+      <title> K6.io-Stress Tool Introduction</title>
+      <link>https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/</guid>
+      <description>Sometimes, before we go online, we will hope that the server is stress tested, instead of being pressure tested on the first day of opening, we need to prepare some tools to use&amp;hellip; here is a K6.io, Https://www.loadimpact.com The underlying pressure measurement tool.
+Official website: https://k6.io/
+Using this tool is very simple, the specified number of people / time / script can work The problem will be in how the script is written.</description>
+    </item>
+    
+    <item>
       <title>AWS CodeBuild - Create Your Windows DockerImage</title>
       <link>https://gcssys.github.io/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>

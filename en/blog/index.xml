@@ -12,6 +12,17 @@
     
     
     <item>
+      <title> K6.io-Stress Tool Introduction</title>
+      <link>https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/</guid>
+      <description>Sometimes, before we go online, we will hope that the server is stress tested, instead of being pressure tested on the first day of opening, we need to prepare some tools to use&amp;hellip; here is a K6.io, Https://www.loadimpact.com The underlying pressure measurement tool.
+Official website: https://k6.io/
+Using this tool is very simple, the specified number of people / time / script can work The problem will be in how the script is written.</description>
+    </item>
+    
+    <item>
       <title>AWS CodeBuild - Create Your Windows DockerImage</title>
       <link>https://gcssys.github.io/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
@@ -39,25 +50,6 @@ Instructions Environment: Use a host or virtual machine or a direct EC2 (Windows
       <guid>https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/</guid>
       <description>There are customer projects that want to import CI/CD. The project source code SourceCode is made with DotNet Web. Because the customer has not yet used the version control, here he introduced him to use Github, and by the way taught the use of Git.
 The first thing I want to use here is TravisCI, because it is directly connected to Github, and it is also convenient for customers. However, testing the test code obtained from the customer side, a test encounters tragedy&amp;hellip; Because Travis is using the Linux Container to build the project, but the support for C# is limited, especially the use of many Windows frameworks, only to find TravisCI.</description>
-    </item>
-    
-    <item>
-      <title>K6.io-壓測工具介紹</title>
-      <link>https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/</link>
-      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/</guid>
-      <description>有時候上線之前, 我們會希望伺服器是有經過壓力測試的, 而不是開放第一天被壓力測試, 這邊就需要準備一些工具來使用&amp;hellip;這邊就介紹一款K6.io, 是 https://www.loadimpact.com 底層使用的壓測工具。
-官方網站：https://k6.io/
-使用此工具很簡單, 指定人數/時間/腳本就可以運作 問題點會出在腳本怎麼撰寫 (另外人數與記憶體有關, 看開工具的機器而定)
-這邊講一個簡單的腳本寫法
- 建立一個test.js 輸入下面的內容 後存檔
-import http from &amp;ldquo;k6/http&amp;rdquo;; import { check } from &amp;ldquo;k6&amp;rdquo;;
-export default function() { check(http.get(&amp;ldquo;www.targetweb.com&amp;rdquo;), { &amp;ldquo;status is 200&amp;rdquo;: &amp;reg; =&amp;gt; r.status == 200, }); }
- 用以下指令運作工具
-k6 &amp;ndash;vus=10 &amp;ndash;duration=300s test.js
- 就會用10個人持續連線網站300秒
- 最後統計出連線時間的數據   </description>
     </item>
     
   </channel>

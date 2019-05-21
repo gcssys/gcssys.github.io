@@ -2,36 +2,36 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>K6.io-壓測工具介紹 - GrandtechCloud Service Blog</title>
-<meta name="description" content="K6.io-壓測工具介紹">
+<title> K6.io-Stress Tool Introduction - GrandtechCloud Service Blog</title>
+<meta name="description" content=" K6.io-Stress Tool Introduction">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.55.2" />
   
-<meta itemprop="name" content="K6.io-壓測工具介紹">
-<meta itemprop="description" content="K6.io-壓測工具介紹">
+<meta itemprop="name" content=" K6.io-Stress Tool Introduction">
+<meta itemprop="description" content=" K6.io-Stress Tool Introduction">
 
 
 <meta itemprop="datePublished" content="2019-04-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-04-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="50">
+<meta itemprop="wordCount" content="163">
 
 
 
-<meta itemprop="keywords" content="工具," />
+<meta itemprop="keywords" content="Tools," />
 
-  <meta property="og:title" content="K6.io-壓測工具介紹" />
-<meta property="og:description" content="K6.io-壓測工具介紹" />
+  <meta property="og:title" content=" K6.io-Stress Tool Introduction" />
+<meta property="og:description" content=" K6.io-Stress Tool Introduction" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://gcssys.github.io/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/" />
 <meta property="article:published_time" content="2019-04-03T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2019-04-03T00:00:00&#43;00:00"/>
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="K6.io-壓測工具介紹"/>
-<meta name="twitter:description" content="K6.io-壓測工具介紹"/>
+<meta name="twitter:title" content=" K6.io-Stress Tool Introduction"/>
+<meta name="twitter:description" content=" K6.io-Stress Tool Introduction"/>
 
   
 
@@ -176,10 +176,10 @@
   <header>
   <div class="title">
     
-        <h2><a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/">K6.io-壓測工具介紹</a></h2>
+        <h2><a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/"> K6.io-Stress Tool Introduction</a></h2>
     
     
-        <p>K6.io-壓測工具介紹</p>
+        <p> K6.io-Stress Tool Introduction</p>
     
 </div>
   <div class="meta">
@@ -209,38 +209,43 @@
   
 
   <div class="content">
-    <p>有時候上線之前, 我們會希望伺服器是有經過壓力測試的, 而不是開放第一天被壓力測試, 這邊就需要準備一些工具來使用&hellip;這邊就介紹一款K6.io, 是 <a href="https://www.loadimpact.com">https://www.loadimpact.com</a>  底層使用的壓測工具。</p>
+    <p>Sometimes, before we go online, we will hope that the server is stress tested, instead of being pressure tested on the first day of opening, we need to prepare some tools to use&hellip; here is a K6.io, <a href="Https://www.loadimpact.com">Https://www.loadimpact.com</a> The underlying pressure measurement tool.</p>
 
-<p>官方網站：<a href="https://k6.io/">https://k6.io/</a></p>
+<p>Official website: <a href="https://k6.io/">https://k6.io/</a></p>
 
-<p>使用此工具很簡單, 指定人數/時間/腳本就可以運作
-問題點會出在腳本怎麼撰寫
-(另外人數與記憶體有關, 看開工具的機器而定)</p>
+<p>Using this tool is very simple, the specified number of people / time / script can work
+The problem will be in how the script is written.
+(The number of people is related to the memory, depending on the machine of the tool)</p>
 
-<p>這邊講一個簡單的腳本寫法</p>
+<p>Here is a simple scripting</p>
 
 <ul>
-<li>建立一個test.js</li>
+<li>Create a test.js</li>
+<li>Enter the following content and then archive<br />
+<br /></li>
+</ul>
 
-<li><p>輸入下面的內容 後存檔</p>
+<pre><code>    import http from &quot;k6/http&quot;;
+    import { check } from &quot;k6&quot;;
+    
+    export default function() {
+      check(http.get(&quot;www.targetweb.com&quot;), {
+        &quot;status is 200&quot;: (r) =&gt; r.status == 200,
+      });
+    }
+</code></pre>
 
-<p>import http from &ldquo;k6/http&rdquo;;
-import { check } from &ldquo;k6&rdquo;;</p>
+<ul>
+<li>Use the following instructions to operate the tool<br /></li>
+</ul>
 
-<p>export default function() {
-  check(http.get(&ldquo;www.targetweb.com&rdquo;), {
-    &ldquo;status is 200&rdquo;: &reg; =&gt; r.status == 200,
-  });
-}</p></li>
+<pre><code>    K6 --vus=10 --duration=300s test.js
+</code></pre>
 
-<li><p>用以下指令運作工具</p>
-
-<p>k6 &ndash;vus=10 &ndash;duration=300s test.js</p></li>
-
-<li><p>就會用10個人持續連線網站300秒</p></li>
-
-<li><p>最後統計出連線時間的數據
-<img src="https://files.readme.io/b6eb148-Screen_Shot_2017-11-29_at_12.01.17.png" alt="" /></p></li>
+<ul>
+<li>Will use 10 people to continuously connect to the website for 300 seconds</li>
+<li>Finally count the data of the connection time<br />
+<img src="https://files.readme.io/b6eb148-Screen_Shot_2017-11-29_at_12.01.17.png" alt="" /></li>
 </ul>
 
   </div>
@@ -253,7 +258,7 @@ import { check } from &ldquo;k6&rdquo;;</p>
         <ul>
           
             
-            <li><a class="article-category-link" href="https://gcssys.github.io/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8">實務應用</a></li>
+            <li><a class="article-category-link" href="https://gcssys.github.io/en/categories/usage">Usage</a></li>
           
         </ul>
       </li>
@@ -266,7 +271,7 @@ import { check } from &ldquo;k6&rdquo;;</p>
         <ul>
           
             
-            <li><a class="article-category-link" href="https://gcssys.github.io/en/tags/%E5%B7%A5%E5%85%B7">工具</a></li>
+            <li><a class="article-category-link" href="https://gcssys.github.io/en/tags/tools">Tools</a></li>
           
         </ul>
       </li>
@@ -282,8 +287,8 @@ import { check } from &ldquo;k6&rdquo;;</p>
 </article>
 <div class="pagination">
   
+    <a href="/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/" class="button big previous"><i class="fas fa-angle-left"></i> AWS CodeBuild - Create Your Windows DockerImage</a>
   
-    <a href="/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/" class="button big next">DotNet CI/CD Troubleshooting <i class="fas fa-angle-right"></i></a>
   
 </div>
 
@@ -294,6 +299,17 @@ import { check } from &ldquo;k6&rdquo;;</p>
     <header>
       <h1>Recent posts</h1>
     </header>
+    
+    <article class="mini-post">
+      <section>
+        
+
+      </section>
+      <header>
+        <h1><a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/"> K6.io-Stress Tool Introduction</a></h1>
+        <time class="published" datetime="">April 3, 2019</time>
+      </header>
+    </article>
     
     <article class="mini-post">
       <section>
@@ -328,17 +344,6 @@ import { check } from &ldquo;k6&rdquo;;</p>
       </header>
     </article>
     
-    <article class="mini-post">
-      <section>
-        
-
-      </section>
-      <header>
-        <h1><a href="/en/blog/k6-io-%E5%A3%93%E6%B8%AC%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%B4%B9/">K6.io-壓測工具介紹</a></h1>
-        <time class="published" datetime="">April 3, 2019</time>
-      </header>
-    </article>
-    
     
   </section>
 
@@ -355,17 +360,12 @@ import { check } from &ldquo;k6&rdquo;;</p>
           
           <li>
             
-              <a href="/en/categories/usage/">usage<span class="count">2</span></a>
+              <a href="/en/categories/usage/">usage<span class="count">3</span></a>
             
           
           <li>
             
               <a href="/en/categories/introduction/">introduction<span class="count">1</span></a>
-            
-          
-          <li>
-            
-              <a href="/en/categories/%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8/">實務應用<span class="count">1</span></a>
             
           
           </li>
