@@ -6,10 +6,19 @@
     <description>Recent content on GrandtechCloud Service Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>tw</language>
-    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 May 2019 16:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://gcssys.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BBB</title>
+      <link>https://gcssys.github.io/blog/bbb/</link>
+      <pubDate>Mon, 20 May 2019 16:00:00 +0000</pubDate>
+      
+      <guid>https://gcssys.github.io/blog/bbb/</guid>
+      <description>BBB</description>
+    </item>
     
     <item>
       <title>AWS CodeBuild - 建立Windows主機的DockerImage</title>

@@ -3,6 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gcssys.github.io/en/blog/</loc>
+    <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tw"
+                href="https://gcssys.github.io/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gcssys.github.io/en/blog/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://gcssys.github.io/en/blog/en-test/</loc>
+    <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gcssys.github.io/en/</loc>
+    <lastmod>2019-05-20T16:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="tw"
+                href="https://gcssys.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://gcssys.github.io/en/"
+                />
+  </url>
+  
+  <url>
     <loc>https://gcssys.github.io/en/tags/aws/</loc>
     <lastmod>2019-04-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -30,22 +67,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://gcssys.github.io/en/blog/aws-codebuild-%E5%BB%BA%E7%AB%8Bwindows%E4%B8%BB%E6%A9%9F%E7%9A%84dockerimage/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://gcssys.github.io/en/blog/</loc>
-    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tw"
-                href="https://gcssys.github.io/blog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gcssys.github.io/en/blog/"
                 />
   </url>
   
@@ -124,22 +145,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://gcssys.github.io/en/blog/dotnet-ci-cd-%E5%B0%88%E6%A1%88%E7%84%A1%E6%B3%95%E7%B7%A8%E8%AD%AF%E8%99%95%E7%90%86/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://gcssys.github.io/en/</loc>
-    <lastmod>2019-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="tw"
-                href="https://gcssys.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://gcssys.github.io/en/"
                 />
   </url>
   
